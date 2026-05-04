@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { AppContext } from "./AppContext";
 
-function Login({ onLogin }) {
+function Login() {
+  const { login } = useContext(AppContext);
   const [creds, setCreds] = useState({});
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -22,8 +24,7 @@ function Login({ onLogin }) {
 
       if (response.status === 200) {
         localStorage.setItem("token", response.data.token);
-        localStorage.setItem("user", JSON.stringify(response.data.user));
-        onLogin && onLogin({ username: creds.username });
+        login(response.data.user || { username: creds.username });
         navigate("/stats");
       }
     } catch (error) {

@@ -6,17 +6,18 @@ import About from "./About";
 import NoMatch from "./NoMath";
 import NewPost from "./NewPost";
 import Login from "./Login";
-import { useState } from "react";
 import ProtectedRoute from "./ProtectedRoute";
 import Stats from "./Stats";
 import Register from "./Register";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { AppContext } from "./AppContext";
+
 export default function App() {
-  const [user, setUser] = useState(null);
+  const { user, logout } = useContext(AppContext);
   const navigate = useNavigate();
   const handleLogout = () => {
-    localStorage.removeItem("token");
-    setUser(null);
+    logout();
     navigate("/");
   };
   return (
@@ -57,12 +58,12 @@ export default function App() {
           <Route path="/posts" element={<PostList />} />
           <Route path="/posts/:slug" element={<Post />} />
           <Route path="/about" element={<About />} />
-          <Route path="/login" element={<Login onLogin={setUser} />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route
             path="/stats"
             element={
-              <ProtectedRoute user={user}>
+              <ProtectedRoute>
                 <Stats />
               </ProtectedRoute>
             }
@@ -71,7 +72,7 @@ export default function App() {
           <Route
             path="/newpost"
             element={
-              <ProtectedRoute user={user}>
+              <ProtectedRoute>
                 <NewPost />
               </ProtectedRoute>
             }
