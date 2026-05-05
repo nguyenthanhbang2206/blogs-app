@@ -11,7 +11,7 @@ export default function Post() {
     const fetchPost = async () => {
       try {
         const { data } = await axios.get(
-          `https://qj2vdr-8080.csb.app/api/blogs/${slug}`
+          `http://localhost:8080/api/blogs/${slug}`,
         );
         setPost(data);
       } catch (err) {
@@ -34,8 +34,8 @@ export default function Post() {
 
   return (
     <div style={{ padding: 20 }}>
-      <h3>{title}</h3>
-      <p>{content}</p>
+      <span>-Tiêu đề</span><h3>{title}</h3>
+      <span>-Nội dung</span><p>{content}</p>
     </div>
   );
 }

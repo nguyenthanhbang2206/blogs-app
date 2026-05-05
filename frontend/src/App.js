@@ -40,6 +40,10 @@ export default function App() {
                 {" "}
                 New Post
               </Link>
+              <Link to="/stats" style={{ padding: 5 }}>
+                {" "}
+                Stats
+              </Link>
               <button onClick={handleLogout}>Logout</button>
             </>
           )}

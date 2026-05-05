@@ -14,7 +14,7 @@ function NewPost() {
   const onSubmit = async (data) => {
     try {
       const response = await axios.post(
-        "https://qj2vdr-8080.csb.app/api/blogs",
+        "http://localhost:8080/api/blogs",
         data,
         {
           headers: {

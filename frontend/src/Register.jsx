@@ -10,7 +10,7 @@ function Register() {
   const handleRegister = async () => {
     try {
       const response = await axios.post(
-        "https://qj2vdr-8080.csb.app/api/auth/register",
+        "http://localhost:8080/api/auth/register",
         creds
       );
 
@@ -43,6 +43,7 @@ function Register() {
         onChange={(e) => setCreds({ ...creds, password: e.target.value })}
       />
       <br />
+     
       <br />
 
       <button onClick={handleRegister}>Register</button>

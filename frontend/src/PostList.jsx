@@ -9,9 +9,7 @@ export default function PostList() {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const { data } = await axios.get(
-          "https://qj2vdr-8080.csb.app/api/blogs"
-        );
+        const { data } = await axios.get("http://localhost:8080/api/blogs");
         setPosts(data);
       } catch (err) {
         console.error(err);
@@ -26,14 +24,18 @@ export default function PostList() {
   if (loading) return <span>Loading...</span>;
 
   return (
-    <ul>
-      {posts.map((post) => (
-        <li key={post.id}>
-          <Link to={`/posts/${post.slug}`}>
-            <h3>{post.title}</h3>
-          </Link>
-        </li>
-      ))}
-    </ul>
+    <>
+      <h1>Danh sách các bài viết</h1>
+
+      <ul>
+        {posts.map((post) => (
+          <li key={post.id}>
+            <Link to={`/posts/${post.slug}`}>
+              <h3>{post.title}</h3>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </>
   );
 }

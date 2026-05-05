@@ -54,7 +54,7 @@ router.post("/login", async (req, res) => {
         },
       },
       secretKey,
-      { expiresIn: "1h" }
+      { expiresIn: "24h" }
     );
 
     res.json({ token, user });

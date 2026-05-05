@@ -4,13 +4,13 @@ const verifyToken = require("../middlewares/verifyToken");
 
 const router = express.Router();
 
-// GET all
+
 router.get("/", async (req, res) => {
   const blogs = await Blog.find();
   res.json(blogs);
 });
 
-// GET by slug
+
 router.get("/:slug", async (req, res) => {
   const blog = await Blog.findOne({ slug: req.params.slug });
 
@@ -21,7 +21,7 @@ router.get("/:slug", async (req, res) => {
   res.json(blog);
 });
 
-// CREATE
+
 router.post("/", verifyToken, async (req, res) => {
   const blog = await Blog.create(req.body);
   res.json(blog);
